@@ -1,22 +1,27 @@
 import React, {Component} from 'react';
-import { Redirect } from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 
-let sucessfullyLogin = false;
+class LoginButton extends Component {
 
-const LoginButton = (props) => {
+  constructor(props){
+      super(props);
 
-  if(sucessfullyLogin){
-    return <Redirect to='/course/create' />
+      this.state = {
+        clicked: 'false',
+       };
   }
 
-  return(
-    <button type="button" className="btn btn-primary" onClick={() => onSubmit(props.loginInfo)}>Login</button>
-  );
-};
+  onSubmit(obj){
+    console.log(obj);
+    this.setState( {clicked:'true'} );
+    this.props.history.push("/course");
+  }
 
-function onSubmit(obj){
-  console.log(obj);
-  sucessfullyLogin = true;
-}
+  render(){
+      return(
+        <button type="button" className="btn btn-primary" onClick={() => this.onSubmit(this.props.loginInfo)}>Login</button>
+      );
+    };
+  };
 
 export default LoginButton;
