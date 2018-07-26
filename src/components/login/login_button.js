@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter, Switch, Route, Redirect,Link} from 'react-router-dom';
 
 class LoginButton extends Component {
 
@@ -14,12 +14,13 @@ class LoginButton extends Component {
   onSubmit(obj){
     console.log(obj);
     this.setState( {clicked:'true'} );
-    this.props.history.push("/course");
   }
 
   render(){
       return(
-        <button type="button" className="btn btn-primary" onClick={() => this.onSubmit(this.props.loginInfo)}>Login</button>
+        <Link to='/course/register'>
+          <button type="button" className="btn btn-primary" onClick={() => this.onSubmit(this.props.loginInfo)}>Login</button>
+       </Link>
       );
     };
   };
