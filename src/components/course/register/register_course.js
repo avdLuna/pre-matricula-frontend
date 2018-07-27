@@ -4,6 +4,7 @@ import CodeInput from './code_input';
 import CreditInput from './credit_input';
 import PPCRadio from './ppc_radio';
 import RegisterButton from './register_button';
+import AdminNavbar from '../../menu/admin/admin_navbar'
 import './register_course.css';
 
 class RegisterCourse extends Component {
@@ -38,8 +39,11 @@ class RegisterCourse extends Component {
 
   render(){
     return (
+      <div>
+        <AdminNavbar />
       <div id="register_component" >
         <h1>Cadastro de disciplina</h1>
+        <br />
         <NameInput updateName={ newName => this.updateName(newName) } />
         <br />
         <div className="row">
@@ -54,6 +58,7 @@ class RegisterCourse extends Component {
       <PPCRadio updatePPC={ newPPC => this.updatePPC(newPPC) }  />
       <br/>
       <RegisterButton registerInfo={this.state} />
+    </div>
     </div>
     );
   };
