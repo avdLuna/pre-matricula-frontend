@@ -4,7 +4,8 @@ import CodeInput from './code_input';
 import CreditInput from './credit_input';
 import PPCRadio from './ppc_radio';
 import RegisterButton from './register_button';
-import AdminNavbar from '../../menu/admin/admin_navbar'
+import AdminSidenav from '../../menu/sidenav/admin/admin_sidenav'
+import Navbar from '../../menu/navbar/navbar'
 import './register_course.css';
 
 class RegisterCourse extends Component {
@@ -40,7 +41,8 @@ class RegisterCourse extends Component {
   render(){
     return (
       <div>
-        <AdminNavbar />
+        <Navbar />
+        <AdminSidenav />
       <div id="register_component" >
         <h1>Cadastro de disciplina</h1>
         <br />
