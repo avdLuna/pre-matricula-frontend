@@ -2,14 +2,40 @@ import React, {Component} from 'react';
 import AdminSidenav from '../../menu/sidenav/admin/admin_sidenav'
 import Navbar from '../../menu/navbar/navbar'
 
-class ListCourse extends Component {
+class CourseList extends Component {
 
   constructor(props){
       super(props);
 
       this.state = {
-        teste: ''
+        newPPCCourses: [],
+        oldPPCCourses: []
        };
+  }
+
+  componentDidMount(){
+    this.fetchNewPPC();
+    this.fetchOldPPC();
+  }
+
+  fetchNewPPC(){
+    fetch('http://analytics.ufcg.edu.br/pre/ciencia_da_computacao_i_cg/disciplinas')
+    .then( courses => courses.json() )
+    .then( parsedJSON => {
+      this.setState({ newPPCCourses: parsedJSON })
+      console.log(this.state.newPPCCourses);
+    })
+    .catch(err => console.log("fudeu",err))
+  }
+
+  fetchOldPPC(){
+    fetch('http://analytics.ufcg.edu.br/pre/ciencia_da_computacao_d_cg/disciplinas')
+    .then( courses => courses.json() )
+    .then( parsedJSON => {
+      this.setState({ oldPPCCourses: parsedJSON })
+      console.log(this.state.oldPPCCourses);
+    })
+    .catch(err => console.log("fudeu",err))
   }
 
   render(){
@@ -23,4 +49,4 @@ class ListCourse extends Component {
   };
 };
 
-export default ListCourse;
+export default CourseList;

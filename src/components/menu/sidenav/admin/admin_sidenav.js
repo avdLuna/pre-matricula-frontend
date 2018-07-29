@@ -3,10 +3,6 @@ import './sidenav.css'
 
 class AdminSidenav extends Component {
 
-  constructor(props){
-    super(props);
-  }
-
   render () {
     return (
           <div id="sidebar-wrapper">
