@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
+import {CollapsibleComponent, CollapsibleHead, CollapsibleContent} from 'react-collapsible-component'
+import CourseListItem from './course_list_item'
 import AdminSidenav from '../../menu/sidenav/admin/admin_sidenav'
 import Navbar from '../../menu/navbar/navbar'
+import './course_list.css'
 
 class CourseList extends Component {
 
@@ -25,7 +28,7 @@ class CourseList extends Component {
       this.setState({ newPPCCourses: parsedJSON })
       console.log(this.state.newPPCCourses);
     })
-    .catch(err => console.log("fudeu",err))
+    .catch(err => console.log("Could not fetch API ",err))
   }
 
   fetchOldPPC(){
@@ -35,16 +38,34 @@ class CourseList extends Component {
       this.setState({ oldPPCCourses: parsedJSON })
       console.log(this.state.oldPPCCourses);
     })
-    .catch(err => console.log("fudeu",err))
+    .catch(err => console.log("Could not fetch API ",err))
   }
-
+//
   render(){
+    const listItems = this.state.newPPCCourses.map((course) => {
+      if(course.disciplina !== "Optativa Geral" && course.disciplina !== "Optativa Específica") {
+        return( <CourseListItem key={course.codigo_disciplina} course={course} /> );
+      }
+    });
+
     return (
       <div>
         <Navbar />
         <AdminSidenav />
-        <h1>Lista Funciona</h1>
-    </div>
+        <div id="course_list">
+          <br />
+          <br />
+            <h3>Lista de disciplinas</h3>
+            <br />
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">Nome da disciplina</li>
+              </ul>
+              <br />
+            <CollapsibleComponent >
+            {listItems}
+            </CollapsibleComponent>
+          </div>
+        </div>
     );
   };
 };

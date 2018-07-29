@@ -44,6 +44,8 @@ class RegisterCourse extends Component {
         <Navbar />
         <AdminSidenav />
       <div id="register_component" >
+        <br />
+        <br />
         <h1>Cadastro de disciplina</h1>
         <br />
         <NameInput updateName={ newName => this.updateName(newName) } />
