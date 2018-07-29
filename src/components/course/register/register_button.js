@@ -12,6 +12,12 @@ class RegisterButton extends Component {
   onSubmit(obj){
     console.log(obj);
     this.setState( {clicked:'true'} );
+    /* Funcão genérica para enviar dados pro backend
+    fetch('apiurl', {
+      method: POST,
+      body: JSON.stringify(obj)
+    });
+    */
   }
 
   render () {
