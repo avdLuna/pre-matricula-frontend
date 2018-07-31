@@ -23,6 +23,10 @@ class PreEnrollmentList extends Component {
     this.fetchOldPPC();
   }
 
+  componentWillMount(){
+    this.coursesSelected = new Set();
+  }
+
   fetchNewPPC(){
     fetch('http://analytics.ufcg.edu.br/pre/ciencia_da_computacao_i_cg/disciplinas')
     .then( courses => courses.json() )
@@ -41,15 +45,27 @@ class PreEnrollmentList extends Component {
     .catch(err => console.log("Could not fetch API ",err))
   }
 
-  handleChange = (event, value) => {
+  handleTabChange = (event, value) => {
     this.setState({ value });
   };
+
+  handleCheckboxes(course){
+    if(this.coursesSelected.has(course)){
+      this.coursesSelected.delete(course);
+    } else {
+      this.coursesSelected.add(course);
+    }
+    console.log(this.teste);
+    this.setState({pre_enrollment:this.teste})
+  }
 
   render() {
     const newPPCList = this.state.newPPCCourses.map((course) => {
       if(course.disciplina !== "Optativa Geral" && course.disciplina !== "Optativa Específica") {
         return(  <li className="list-group-item" key={course.codigo_disciplina}>
-                  <input className="form-check-input" type="checkbox" value={course.disciplina} />
+                  <input className="form-check-input" type="checkbox" value={course.disciplina} onChange = {
+                      (event) => this.handleCheckboxes(event.target.value)
+                    } />
                     <label className="form-check-label">
                       {course.disciplina}
                     </label>
@@ -61,7 +77,9 @@ class PreEnrollmentList extends Component {
     const oldPPCList = this.state.oldPPCCourses.map((course) => {
       if(course.disciplina !== "Optativa Geral" && course.disciplina !== "Optativa Específica") {
         return(  <li className="list-group-item" key={course.codigo_disciplina}>
-                  <input className="form-check-input" type="checkbox" value={course.disciplina} />
+                  <input className="form-check-input" type="checkbox" value={course.disciplina} onChange = {
+                      (event) => this.handleCheckboxes(event.target.value)
+                    } />
                     <label className="form-check-label">
                       {course.disciplina}
                     </label>
@@ -83,7 +101,7 @@ class PreEnrollmentList extends Component {
           <h1>Pré matrícula</h1>
           <br/>
           <Paper>
-            <Tabs value={this.state.value} onChange={this.handleChange} indicatorColor="primary" textColor="primary">
+            <Tabs value={this.state.value} onChange={this.handleTabChange} indicatorColor="primary" textColor="primary">
               <Tab label="PPC Novo" />
               <Tab label="PPC Antigo"/>
             </Tabs>
