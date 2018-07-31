@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link,Redirect} from 'react-router-dom';
+import  GoogleLogin  from 'react-google-login';
 
 class LoginButton extends Component {
 
@@ -11,16 +12,33 @@ class LoginButton extends Component {
        };
   }
 
-  onSubmit(obj){
-    console.log(obj);
-    this.setState( {clicked:'true'} );
+  deuBom(response){
+    fetch('http://localhost:8080/users')
+    .then(data => console.log(data))
+  }
+
+  teste(){
+    fetch
   }
 
   render(){
+    const responseGoogle = (response) => {
+      this.deuBom(response);
+      console.log(response);
+    }
       return(
-        <Link to='/course/register'>
+        /*
+        <a href='http://localhost:8080/login'>
           <button type="button" className="btn btn-primary" onClick={() => this.onSubmit(this.props.loginInfo)}>Login</button>
-       </Link>
+       </a>
+       */
+       <GoogleLogin
+          clientId="824246316091-l1dhfehnq1c4cs1k3aaacsk79aufictv.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+        />
+
       );
     };
   };

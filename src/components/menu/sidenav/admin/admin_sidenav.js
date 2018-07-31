@@ -13,16 +13,16 @@ class AdminSidenav extends Component {
                     </a>
                 </li>
                 <li>
-                    <a href="/">Home</a>
+                    <a href="/admin/course">Home</a>
                 </li>
                 <li>
-                    <a href="/pre-enrollments">Visualizar pré matrículas</a>
+                    <a href="/admin/pre-enrollments">Visualizar pré matrículas</a>
                 </li>
                 <li>
-                    <a href="/course">Visualizar disciplinas</a>
+                    <a href="/admin/course">Visualizar disciplinas</a>
                 </li>
                 <li>
-                    <a href="/course/register">Cadastrar Disciplina</a>
+                    <a href="/admin/course/register">Cadastrar Disciplina</a>
                 </li>
             </ul>
           </div>

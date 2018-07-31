@@ -12,9 +12,9 @@ class App extends Component {
       <BrowserRouter>
       <div className="App">
         <Route exact path="/" component={Login}   />
-        <Route exact path="/course" component={CourseList}   />
-        <Route exact path="/course/register" component={RegisterCourse}   />
-        <Route exact path="/test" component={PreEnrollmentList}   />
+        <Route exact path="/admin/course" component={CourseList}   />
+        <Route exact path="/admin/course/register" component={RegisterCourse}   />
+        <Route exact path="/user/new/enrollment" component={PreEnrollmentList}   />
       </div>
     </BrowserRouter>
     );
