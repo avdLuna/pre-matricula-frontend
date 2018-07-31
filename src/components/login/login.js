@@ -5,29 +5,6 @@ import './login.css';
 
 class Login extends Component {
 
-  constructor(props){
-      super(props);
-      /*
-      this.state = {
-        email: '',
-        password: '',
-        category: ''
-       };
-       */
-  }
-  /*
-  updateEmail(newEmail){
-    this.setState( {email:newEmail} );
-  };
-
-  updatePassword(newPassword){
-    this.setState( {password:newPassword} );
-  }
-
-  updateCategory(newCategory){
-    this.setState( {category:newCategory} );
-  }
-  */
   // RESOLVER ESSE . NA IMAGEM URGENTE !!
   render(){
     return (

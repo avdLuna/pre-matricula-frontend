@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {CollapsibleComponent, CollapsibleHead, CollapsibleContent} from 'react-collapsible-component'
+import {CollapsibleComponent} from 'react-collapsible-component'
 import CourseListItem from './course_list_item'
 import AdminSidenav from '../../menu/sidenav/admin/admin_sidenav'
 import Navbar from '../../menu/navbar/navbar'
