@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import './sidenav.css'
 
-class AdminSidenav extends Component {
+class UserSidenav extends Component {
 
   render () {
     return (
@@ -9,20 +9,17 @@ class AdminSidenav extends Component {
             <ul className="sidebar-nav">
                 <li className="sidebar-brand">
                     <a>
-                        Coordenador
+                        Aluno
                     </a>
                 </li>
                 <li>
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="/pre-enrollments">Visualizar pré matrículas</a>
+                    <a href="/pre-enrollments">Realizar pré matrícula</a>
                 </li>
                 <li>
-                    <a href="/course">Visualizar disciplinas</a>
-                </li>
-                <li>
-                    <a href="/course/register">Cadastrar Disciplina</a>
+                    <a href="/course">Visualizar pré matrícula</a>
                 </li>
             </ul>
           </div>
@@ -30,4 +27,4 @@ class AdminSidenav extends Component {
   }
 }
 
-export default AdminSidenav;
+export default UserSidenav;
