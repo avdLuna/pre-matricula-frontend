@@ -48,7 +48,7 @@ class CourseList extends Component {
      }
    });
 
-    const listOldItems = this.state.newPPCCourses.map((course) => {
+    const listOldItems = this.state.oldPPCCourses.map((course) => {
      if(course.disciplina !== "Optativa Geral" && course.disciplina !== "Optativa Específica") {
        return( <CourseListItem key={course.codigo_disciplina} course={course} /> );
      }
@@ -69,8 +69,6 @@ class CourseList extends Component {
              <br />
            <CollapsibleComponent >
            {listNewItems}
-           </CollapsibleComponent>
-           <CollapsibleComponent >
            {listOldItems}
            </CollapsibleComponent>
          </div>

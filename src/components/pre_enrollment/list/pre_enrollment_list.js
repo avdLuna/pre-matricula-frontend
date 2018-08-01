@@ -19,9 +19,14 @@ class PreEnrollmentList extends Component {
  }
 
  onSubmit(obj){
-   fetch("{{ env('BACKEND_URL') }}" + "preeenrollments/student/",  {method:"POST", headers: localStorage.get("userToken"), body: JSON.stringify(obj)})
+   const api_url = "http://localhost:8080/preenrollment/student/";
+   let myHeaders = new Headers();
+   myHeaders.append("X-Auth-Token", localStorage.getItem("userToken"));
+   myHeaders.append("Content-Type", "application/json;charset=UTF-8");
+   
+   fetch(api_url,  {method:"POST", headers: myHeaders, body: JSON.stringify(obj)})
    console.log(this.pre_enrollment);
-   console.log(localStorage.get("userToken"));
+   console.log(localStorage.getItem("userToken"));
 }
  componentDidMount(){
    this.fetchNewPPC();
@@ -67,9 +72,16 @@ class PreEnrollmentList extends Component {
 
  render() {
    const newPPCList = this.state.newPPCCourses.map((course) => {
+     const course_json = {
+        name: course.disciplina,
+        code: course.codigo_departamento,
+        credits: course.creditos,
+        type: course.tipo,
+        ppc: "Novo"
+     };
      if(course.disciplina !== "Optativa Geral" && course.disciplina !== "Optativa Específica") {
        return(  <li className="list-group-item" key={course.codigo_disciplina}>
-                 <input className="form-check-input" type="checkbox" value={course.disciplina} onChange = {
+                 <input className="form-check-input" type="checkbox" value={JSON.stringify(course_json)} onChange = {
                      (event) => this.handleCheckboxes(event.target.value)
                    } />
                    <label className="form-check-label">
@@ -81,9 +93,16 @@ class PreEnrollmentList extends Component {
    });
 
   const oldPPCList = this.state.oldPPCCourses.map((course) => {
+     const course_json = {
+        name: course.disciplina,
+        code: course.codigo_departamento,
+        credits: course.creditos,
+        type: course.tipo,
+        ppc: "Antigo"
+     };
      if(course.disciplina !== "Optativa Geral" && course.disciplina !== "Optativa Específica") {
        return(  <li className="list-group-item" key={course.codigo_disciplina}>
-                 <input className="form-check-input" type="checkbox" value={course.disciplina} onChange = {
+                 <input className="form-check-input" type="checkbox" value={JSON.stringify(course_json)} onChange = {
                      (event) => this.handleCheckboxes(event.target.value)
                    } />
                    <label className="form-check-label">

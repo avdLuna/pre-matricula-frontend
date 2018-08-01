@@ -8,13 +8,21 @@ class LoginButton extends Component {
       super(props);
 
       this.state = {
-        redirect: false
+        redirectUser: false,
+        redirectAdmin: false
        };
   }
 
-   setRedirect(){
-      this.setState({redirect: true})
+
+   setRedirectAdmin(){
+      this.setState({redirectAdmin: true})
   }
+
+   setRedirectUser(){
+      this.setState({redirectUser: true})
+  }
+
+
 
   render(){
     let auth = false;
@@ -25,18 +33,29 @@ class LoginButton extends Component {
         username: response.profileObj.name
       };
       let myHeaders = new Headers();
+      localStorage.setItem("userToken", response.accessToken);
       myHeaders.append("X-Auth-Token", response.accessToken);
-      localStorage.setItem('userToken', response.accessToken);
-      fetch("{{ env('BACKEND_URL') }}" + "auth/",  {method:"POST", headers: myHeaders, body: JSON.stringify(msg)})
+      myHeaders.append("Content-Type", "application/json;charset=UTF-8");
+      const api_url = "http://localhost:8080/auth/";
+      console.log(api_url);
+      fetch(api_url,  {method:"POST", headers: myHeaders, body: JSON.stringify(msg)})
       .then(r => {
+    console.log(r);
      if (r.status == 200) {
-        alert('Login efetuado com sucesso!');
-        this.setRedirect();
+        alert('Login efetuado com sucesso!');  
       } else {
         alert('Não foi possível efetuar o login!');
-      };
-  });
-
+      }
+      return r;
+    }).then( r => r.json()).then( parsedJSON => {
+        if (parsedJSON.role == "COORDINATOR") {
+          this.setRedirectAdmin();
+        } else {
+          this.setRedirectUser();
+        }
+     }
+    )
+        
 
     };
 
@@ -45,10 +64,14 @@ class LoginButton extends Component {
         alert('Não foi possível efetuar o login!');
     };
 
-    const { redirect } = this.state;
+    const redirectUser  = this.state.redirectUser;
+    const redirectAdmin = this.state.redirectAdmin;
 
-    if (redirect) {
+    if (redirectUser) {
       return <Redirect to='/user/new/enrollment'/>;
+    }
+    if (redirectAdmin) {
+      return <Redirect to='/admin/course'/>;
     }
 
     return(

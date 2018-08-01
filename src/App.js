@@ -4,7 +4,8 @@ import decode from 'jwt-decode';
 import Login from './components/login/login';
 import RegisterCourse from './components/course/register/register_course';
 import CourseList from './components/course/list/course_list';
-import PreEnrollmentList from './components/pre_enrollment/list/pre_enrollment_list'
+import PreEnrollmentList from './components/pre_enrollment/list/pre_enrollment_list';
+import ViewPreEnrollment from './components/pre_enrollment/view/view_pre_enrollment';
 
 const checkAuth = () =>{
   console.log(localStorage.getItem('token'));
@@ -43,6 +44,7 @@ class App extends Component {
         <Route exact path="/admin/course" component={CourseList}   />
         <Route exact path="/admin/course/register" component={RegisterCourse}   />
         <Route exact path="/user/new/enrollment" component={PreEnrollmentList}  />
+        <Route exact path="/user/view/enrollment" component={ViewPreEnrollment}  />
       </div>
     </BrowserRouter>
     );

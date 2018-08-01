@@ -17,7 +17,7 @@ class Navbar extends Component {
                 </ul>
                 <ul className="navbar-nav ml-auto">
                  <li className="nav-item">
-                     <a className="nav-link" href="/login" data-target="#myModal" data-toggle="modal">Logout</a>
+                     <a className="nav-link" href="/" data-target="#myModal" data-toggle="modal">Logout</a>
                  </li>
              </ul>
               </div>
