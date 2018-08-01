@@ -19,7 +19,9 @@ class PreEnrollmentList extends Component {
  }
 
  onSubmit(obj){
- console.log(this.pre_enrollment);
+   fetch("{{ env('BACKEND_URL') }}" + "preeenrollments/student/",  {method:"POST", headers: localStorage.get("userToken"), body: JSON.stringify(obj)})
+   console.log(this.pre_enrollment);
+   console.log(localStorage.get("userToken"));
 }
  componentDidMount(){
    this.fetchNewPPC();
@@ -122,4 +124,3 @@ class PreEnrollmentList extends Component {
 }
 
 export default PreEnrollmentList;
-

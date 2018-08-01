@@ -13,7 +13,7 @@ class UserSidenav extends Component {
                     </a>
                 </li>
                 <li>
-                    <a href="/">Home</a>
+                    <a href="/user/new/enrollment">Home</a>
                 </li>
                 <li>
                     <a href="/user/new/enrollment">Realizar pré matrícula</a>
