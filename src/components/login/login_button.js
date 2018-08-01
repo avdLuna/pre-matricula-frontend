@@ -2,23 +2,39 @@ import React, {Component} from 'react';
 import  GoogleLogin  from 'react-google-login';
 
 class LoginButton extends Component {
-
-  onSubmit(){
-    console.log("clicou");
-    var loginWindow = window.open("http://localhost:8080/login", "_blank", "width=700, height=700");
-    const timer = setInterval(function() {   
-      if(loginWindow.closed) {  
-          clearInterval(timer);  
-          console.log(loginWindow.Cookies);
-      }
-    }, 1000);
-  }
-
   render(){
-      return(
-       <button type="button" className="btn btn-primary" onClick={() => this.onSubmit()}>Login</button>
+    const responseGooglePositive = (response) => {
+      console.log(response);
+      const msg = {
+        email: response.profileObj.email,
+        username: response.profileObj.name
+      };
+      let myHeaders = new Headers();
+      myHeaders.append("X-Auth-Token", response.accessToken);
+      myHeaders.append("Cache-Control", "no-cache");
+      fetch("{{ env('BACKEND_URL') }}" + "auth/",  {method:"POST", headers: myHeaders, body: JSON.stringify(msg)})
+      .then(r => {
+      if (r.status == 200) {
+        alert('Login efetuado com sucesso!');
+      } else {
+        alert('Não foi possível efetuar o login!');
+      };
+  });
+
+    };
+    
+    const responseGoogleNegative = (response) => {
+      console.log(response);
+    };
+
+    return(
+      <GoogleLogin
+      clientId="824246316091-l1dhfehnq1c4cs1k3aaacsk79aufictv.apps.googleusercontent.com"
+      buttonText="Login"
+      onSuccess={responseGooglePositive}
+      onFailure={responseGoogleNegative}/>
       );
     };
-  };
+};
 
 export default LoginButton;

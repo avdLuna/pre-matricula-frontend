@@ -39,11 +39,10 @@ class App extends Component {
     return (
       <BrowserRouter>
       <div className="App">
-        <Route exact path="/login" component={Login}   />
+        <Route exact path="/" component={Login}   />
         <Route exact path="/admin/course" component={CourseList}   />
         <Route exact path="/admin/course/register" component={RegisterCourse}   />
-        <Route exact path="/user/new/enrollment" component={PreEnrollmentList}   />
-        <PrivateRoute path="/" />
+        <Route exact path="/user/new/enrollment" component={PreEnrollmentList}  />
       </div>
     </BrowserRouter>
     );
